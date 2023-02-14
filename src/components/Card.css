@@ -1,0 +1,19 @@
+.card {
+    width: fit-content;
+    height: fit-content;
+    padding: 3rem;
+    border: 0.3rem black solid;
+    margin: auto;
+    margin-bottom: 0.5rem;
+
+}
+
+.img {
+    background-position: center center;
+    background-size: cover;
+    width: 12rem;
+    height: 8rem;
+    align-self: center;
+    margin: auto;
+    /* background-image: url("../components/images/1.jpg"); */
+}
