@@ -1,8 +1,10 @@
 .App {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: auto;
   margin-top: 5rem;
+
+
 }
 
 .App-logo {
@@ -41,10 +43,11 @@
   }
 }
 
+button {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  align-self: center;
+  margin-top: 2rem;
 
-
-label{
-  margin: auto;
-  font-size: 1rem;
-  font-weight: bold;
 }
