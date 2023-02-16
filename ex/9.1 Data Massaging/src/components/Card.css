@@ -1,0 +1,19 @@
+button {
+    width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  align-self: center;
+  margin-top: 2rem;
+  border: 0.4rem solid black;
+
+}
+.Card{
+  display: flex;
+  flex-direction: column;
+  border: #282c34 0.1rem solid;
+  padding: 2rem;
+  row-gap: 0.3rem;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+}
