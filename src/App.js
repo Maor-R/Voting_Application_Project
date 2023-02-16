@@ -1,45 +1,55 @@
 import "./App.css";
-import { useState } from "react";
-
-import { Button } from "./components/Button";
+import { useState, useEffect } from "react";
+import data from "./data.js";
+import { Name } from "./components/Name";
+import { Card } from "./components/Card";
 
 function App() {
-  let optionAgeArr = [];
-  const test = (event) => {
-    
-    alert(document.getElementById('t').value);
+  const [namesArr, setNamesArr] = useState(
+    data.map((obj) => {
+      return <p> {obj.name}</p>;
+    })
+  );
+  const [objDateBefore1990Arr, setObjDateBefore1990Arr] = useState(
+    data
+      .filter((obj) => {
+        return obj.birthday.slice(-4) < 1990;
+      })
+      .map((obj) => {
+        return obj;
+      })
+  );
 
-  };
-  for (let i = 0; i <= 15; i++) {
-    optionAgeArr.push(<option value={i}>{i}</option>);
-  }
+  // useEffect(() => {
+  //   setNamesArr((prevArray) => [
+  //     ...prevArray,
+  //     data.map((obj) => {
+  //       return <p> {obj.name}</p>;
+  //     }),
+  //   ]);
+  // }, []);
 
-  // console.log(checkboxArr);
+  //   setObjDateBefore1990Arr((prevArray) => [
+  //     ...prevArray,
+  //     data
+  //       .filter((obj) => {
+  //         return obj.birthday.slice(-4) < 1990;
+  //       })
+  //       .map((obj) => {
+  //         return obj;
+  //       }),
+  //   ]);
+  // };
+
+
   return (
-    <div className="App">
-      <form>
-        <label>
-          {" "}
-          First Name: <input id="t" type="text"></input>
-        </label>
-        <label>
-          {" "}
-          Last Name: <input type="text"></input>
-        </label>
-        <select>
-          {" "}
-          Age:
-          {/* parent.map((section) => (
-             <div className="section">{ section }</div>
-           )) */}
-          {optionAgeArr}
-        </select>
-        <label>
-          {" "}
-          Free Text: <textarea></textarea>
-        </label>
-        <button onClick={test}>Continue</button>
-      </form>
+      <div className="App">
+      <label>Names:</label>
+      <Name className="Name" names={namesArr}></Name>
+      <label>Born before 1990:</label>
+      {objDateBefore1990Arr.map((obj) => (
+        <Card data={obj}></Card>
+      ))}
     </div>
   );
 }

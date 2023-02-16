@@ -3,6 +3,7 @@
   flex-direction: row;
   margin: auto;
   margin-top: 5rem;
+  column-gap: 2rem;
 }
 
 .App-logo {
@@ -42,9 +43,3 @@
 }
 
 
-
-label{
-  margin: auto;
-  font-size: 1rem;
-  font-weight: bold;
-}
