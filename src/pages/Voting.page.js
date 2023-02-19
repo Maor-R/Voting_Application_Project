@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { PAGES } from "../constants";
+import { PARTIES, PAGES, N_PARTIES } from "../constants";
 
 import Wrapper from "../styles/styled/Voting.styled";
 import { Confirm, PartiesList } from "../components";
 
-import { PARTIES } from "../constants";
-import catImg from '../assets/images/cat.PNG';
-import lionImg from '../assets/images/lion.PNG';
-import dogImg from '../assets/images/dog.PNG';
-import cowImg from '../assets/images/caw.PNG';
-const images = [catImg, dogImg, cowImg, lionImg]
+import catImg from "../assets/images/cat.PNG";
+import lionImg from "../assets/images/lion.PNG";
+import dogImg from "../assets/images/dog.PNG";
+import cowImg from "../assets/images/caw.PNG";
+const images = [catImg, dogImg, cowImg, lionImg];
 
 const userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -19,13 +18,12 @@ const partiesVotesAmount = JSON.parse(
 );
 
 const Voting = ({ setPage }) => {
-  // const [user, setUser] = useState(userData.name);
   const [openModal, setOpenModal] = useState(false);
   const [voteStatus, setVoteStatus] = useState(userData.isVote);
   const [voteStatusMsg, setVoteStatusMsg] = useState(userData.isVote);
 
   let partiesArr = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < N_PARTIES; i++) {
     partiesArr.push({
       name: PARTIES[i].charAt(0).toUpperCase() + PARTIES[i].slice(1),
       image: images[i],
@@ -33,11 +31,6 @@ const Voting = ({ setPage }) => {
     });
   }
   const [parties, setParties] = useState(partiesArr);
-  // useEffect(() => {
-  //   if (!user) {
-  //     setPage(landing);
-  //   }
-  // }, [setPage, user]);
 
   const [sum, setSum] = useState(
     partiesVotesAmount.reduce((sum, val) => {
@@ -51,7 +44,7 @@ const Voting = ({ setPage }) => {
   };
   const logout = () => {
     setPage(PAGES[0]);
-    localStorage.removeItem('userData');
+    localStorage.removeItem("userData");
   };
 
   const done = () => {
@@ -63,7 +56,7 @@ const Voting = ({ setPage }) => {
     } else {
       setVoteStatus(true);
       setVoteStatusMsg(true);
-      setOpenModal(false);  
+      setOpenModal(false);
     }
   };
 

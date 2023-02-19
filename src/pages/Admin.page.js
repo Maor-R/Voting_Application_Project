@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { PAGES } from "../constants";
 
@@ -7,19 +7,17 @@ import { UsersList } from "../components";
 
 import { users } from "../data";
 
-const [landing] = PAGES;
 const userData = JSON.parse(localStorage.getItem("userData"));
 const partiesVotesAmount = JSON.parse(
   localStorage.getItem("partiesVotesAmount")
 );
 const Admin = ({ setPage }) => {
-  // const [user, setUser] = useState(userData);
+
   let data = [];
   for (let i = 0; i < users.length; i++) {
     const rand = Math.random() > 0.5 ? true : false;
     data.push({ name: users[i].name, id: users[i].id, didVote: rand });
   }
-  // alert(data[0].didVote)
   const [usersData, setUsersData] = useState(data);
   const [sum, setSum] = useState(
     usersData.reduce((sum, user) => {
