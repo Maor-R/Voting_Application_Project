@@ -24,10 +24,8 @@ const Wrapper = styled.section`
       font-size: larger;
     }
 
-    .data-msg {
+    /* .data-msg {
       border: solid 0.2rem var(--primary-200);
-      /* width: fit-content;
-      height: fit-content; */
       padding: 0.5rem;
       background-color: var(--primary-200);
       margin-bottom: 2.7rem;
@@ -41,7 +39,6 @@ const Wrapper = styled.section`
     }
 
     .thanks-msg{
-
       padding: 0.5rem;
       margin-bottom: 2.7rem;
       font-weight: bold;
@@ -52,8 +49,7 @@ const Wrapper = styled.section`
     .logout-btn{
       position: absolute;
       right: 1rem;
-      /* border: solid 0.2rem blue; */
-    }
+    } */
   }
 `;
 export default Wrapper;

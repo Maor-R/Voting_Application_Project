@@ -1,42 +1,71 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import { PAGES } from '../constants';
+import { PAGES } from "../constants";
 
-import Wrapper from '../styles/styled/Admin.styled';
-import {  UsersList } from '../components';
+import Wrapper from "../styles/styled/Admin.styled";
+import { UsersList } from "../components";
 
-import data from '../data';
+import { users } from "../data";
 
 const [landing] = PAGES;
-const userDate = JSON.parse(localStorage.getItem('userData'));
-
+const userData = JSON.parse(localStorage.getItem("userData"));
+const partiesVotesAmount = JSON.parse(
+  localStorage.getItem("partiesVotesAmount")
+);
 const Admin = ({ setPage }) => {
-  const [user, setUser] = useState(userDate);
-  const [users, setUsers] = useState(data);
+  // const [user, setUser] = useState(userData);
+  let data = [];
+  for (let i = 0; i < users.length; i++) {
+    const rand = Math.random() > 0.5 ? true : false;
+    data.push({ name: users[i].name, id: users[i].id, didVote: rand });
+  }
+  // alert(data[0].didVote)
+  const [usersData, setUsersData] = useState(data);
+  const [sum, setSum] = useState(
+    usersData.reduce((sum, user) => {
+      if (user.didVote) {
+        sum++;
+      }
+      return sum;
+    }, 0)
+  );
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     setPage(landing);
-  //   }
-  // }, [setPage, user]);
+  const logout = () => {
+    setPage(PAGES[0]);
+    localStorage.removeItem("userData");
+  };
 
+  const updateUserVote = (id) => {
+    let i = 0;
+    let stopLoop = false;
+    while (i < usersData.length && !stopLoop) {
+      if (usersData[i].id === id) {
+        stopLoop = true;
+      } else {
+        i++;
+      }
+    }
+    usersData[i].didVote = false;
 
-  const delUser = (id) => {
-    const newUsers = users.filter((user) => user.id !== id);
-    setUsers(newUsers);
+    setUsersData(usersData);
   };
 
   return (
     <Wrapper>
-      <main className='dashboard'>
-        {/* <Navbar user={user} setUser={setUser} /> */}
-        <div className='dashboard-page'>
-          {/* <UsersList users={users} deleteUser={delUser} /> */}
+      <main className="page">
+        <div className="data-msg">
+          Hello, {userData.name}
+          <button className="logout-btn btn" onClick={logout}>
+            Logout
+          </button>
         </div>
+        <div className="dashboard">
+          <UsersList users={usersData} updateUserVote={updateUserVote} />
+        </div>
+        <div className="data-msg center">Total voted: {sum}</div>
       </main>
     </Wrapper>
   );
 };
-
 
 export default Admin;

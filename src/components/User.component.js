@@ -1,13 +1,19 @@
-import { BsFillSuitHeartFill } from 'react-icons/bs';
+import { GrUpdate } from "react-icons/gr";
 
-const User = ({ id, image, firstName, lastName, city, deleteUser }) => {
+import { FcApprove, FcDisapprove } from "react-icons/fc";
+
+const User = ({ id, name, didVote, updateUserVote }) => {
   return (
-    <article className='card'>
-      <img src={image} alt={`${firstName} ${lastName}`} />
-      <h4>{firstName} {lastName}</h4>
-      <h5>{city}</h5>
-      <button className='btn btn-transparent mt' onClick={() => deleteUser(id)} >
-        <BsFillSuitHeartFill />
+    <article className="card">
+      <h4>{name}</h4>
+      <h5>{id}</h5>
+      <button
+        className="btn btn-transparent mt"
+        onClick={() => updateUserVote(id)}
+      >
+        {!didVote && <FcDisapprove />}
+        {didVote && <FcApprove />}
+        <GrUpdate />
       </button>
     </article>
   );
