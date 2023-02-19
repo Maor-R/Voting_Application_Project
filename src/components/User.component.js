@@ -13,7 +13,7 @@ const User = ({ id, name, didVote, updateUserVote }) => {
       <h5>{id}</h5>
       <button
         className="btn btn-transparent mt"
-        onClick={() => {setIsVote(false) ;updateUserVote(id)}}
+        onClick={() => {if(isVote){ setIsVote(false) ;updateUserVote(id)}}}
       >
         {!isVote && <FcDisapprove />}
         {isVote && <FcApprove />}
