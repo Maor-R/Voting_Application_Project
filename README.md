@@ -5,10 +5,15 @@ This project was bootstrapped with
 ## Summary
 
 I build a voting application in React.
-• This application allows users to login, and vote for
+
+  • This application allows users to login, and vote for
 one of the parties.
-• Each vote that a party gets - will be shown.
-• The first party to reach X votes - wins!
+
+  • Each vote that a party gets - will be shown.
+  
+  • The first party to reach X votes - wins!
+  
+  
 In the project directory, you can run:
 
 ### `npm start`
