@@ -55,15 +55,15 @@ const Voting = ({ setPage }) => {
   };
 
   const done = () => {
+    const userDataObj = { ...userData, isVote: true };
+    localStorage.setItem("userData", JSON.stringify(userDataObj));
+
     if (userData.type == "admin") {
       setPage(PAGES[1]);
     } else {
       setVoteStatus(true);
       setVoteStatusMsg(true);
-      setOpenModal(false);
-
-      const userDataObj = { ...userData, isVote: true };
-      localStorage.setItem("userData", JSON.stringify(userDataObj));
+      setOpenModal(false);  
     }
   };
 

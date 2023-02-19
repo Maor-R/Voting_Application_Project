@@ -18,11 +18,11 @@ const App = () => {
   useEffect(() => {
     if (!userData) {
       setPage(login);
-    } else if(userData.type == 'admin') {
-      setPage(admin);
-    }
-    else{
+    } else if(userData.type == 'admin' && !userData.isVote) {
       setPage(voting);
+    }
+    else if (userData.type == 'admin'){
+      setPage(admin);
     }
   }, [login, voting]);
 
