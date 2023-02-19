@@ -9,8 +9,8 @@ const User = ({ id, name, didVote, updateUserVote }) => {
 
   return (
     <article className="card">
-      <h4>{name}</h4>
-      <h5>{id}</h5>
+      <h5>{name}</h5>
+      <h4>{id}</h4>
       <button
         className="btn btn-transparent mt"
         onClick={() => {if(isVote){ setIsVote(false) ;updateUserVote(id)}}}
