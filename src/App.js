@@ -1,57 +1,39 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import data from "./data.js";
-import { Name } from "./components/Name";
-import { Card } from "./components/Card";
+import { useState, useEffect } from 'react';
 
-function App() {
-  const [namesArr, setNamesArr] = useState(
-    data.map((obj) => {
-      return <p> {obj.name}</p>;
-    })
-  );
-  const [objDateBefore1990Arr, setObjDateBefore1990Arr] = useState(
-    data
-      .filter((obj) => {
-        return obj.birthday.slice(-4) < 1990;
-      })
-      .map((obj) => {
-        return obj;
-      })
-  );
+import { PAGES } from './constants';
+import {partiesVotesAmount} from './data';
 
-  // useEffect(() => {
-  //   setNamesArr((prevArray) => [
-  //     ...prevArray,
-  //     data.map((obj) => {
-  //       return <p> {obj.name}</p>;
-  //     }),
-  //   ]);
-  // }, []);
+import { Admin, Login, Voting } from './pages';
 
-  //   setObjDateBefore1990Arr((prevArray) => [
-  //     ...prevArray,
-  //     data
-  //       .filter((obj) => {
-  //         return obj.birthday.slice(-4) < 1990;
-  //       })
-  //       .map((obj) => {
-  //         return obj;
-  //       }),
-  //   ]);
-  // };
+import './styles/App.css'
 
+const userData = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null;
+localStorage.setItem('partiesVotesAmount', JSON.stringify(partiesVotesAmount));
 
-  return (
-      <div className="App">
-      <label>Names:</label>
-      <Name className="Name" names={namesArr}></Name>
-      <label>Born before 1990:</label>
-      {objDateBefore1990Arr.map((obj) => (
-        <Card data={obj}></Card>
-      ))}
-    </div>
-  );
-}
+const App = () => {
+  const [page, setPage] = useState('login');
+
+  const [ login, admin, voting] = PAGES;
+
+  useEffect(() => {
+    if (!userData) {
+      setPage(login);
+    } else {
+      setPage(voting);
+    }
+  }, [login, voting]);
+
+  switch (page) {
+    case login:
+      return <Login setPage={setPage} />;
+    case admin:
+      return <Admin setPage={setPage} />;
+    case voting:
+      return <Voting setPage={setPage} />;
+    default:
+      return <Login setPage={setPage} />;
+  }
+
+};
 
 export default App;
