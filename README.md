@@ -1,7 +1,7 @@
 # REACT – Voting Application
 
 This project was bootstrapped with 
-[Site demo.](https://obrm-dating-app.netlify.app)
+[Site demo.](https://voting-application-maor.netlify.app/)
 ## Summary
 
 I build a voting application in React.
